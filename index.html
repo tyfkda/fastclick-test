@@ -9,6 +9,7 @@
     <h1>FastClick test</h1>
 
     <div id="onclick_div"
+         ontouchend="registerTouchEnd();"
          onclick="invertBgColor(this);"
          style="background: rgb(255, 0, 0);
                 margin: 8px;
@@ -19,7 +20,7 @@
     </div>
 
     <div id="ontouch_div"
-         ontouchend="invertBgColor(this);"
+         ontouchend="registerTouchEnd(); invertBgColor(this);"
          style="background: rgb(255, 0, 0);
                 margin: 8px;
                 padding: 8px;
@@ -30,6 +31,7 @@
 
     <div id="fastclick_div_wrapper">
       <div id="fastclick_div"
+           ontouchend="registerTouchEnd();"
            onclick="invertBgColor(this);"
            style="background: rgb(255, 0, 0);
                   margin: 8px;
@@ -46,12 +48,24 @@
     <script type="text/javascript">
       //![CDATA[
 
+      var $touchEndTime;
+
+      function registerTouchEnd() {
+        $touchEndTime = +new Date();
+        console.log("touchEnd: " + $touchEndTime);
+      }
+
       function invertBgColor(elem) {
+        var clickTime = +new Date();
+        console.log("click: " + clickTime);
+
         var m = elem.style.backgroundColor.match(/(\d+),\s*(\d+),\s*(\d+)/)
         if (!m)
           return;
         var r = 255 - parseInt(m[1]), g = 255 - parseInt(m[2]), b = 255 - parseInt(m[3]);
         elem.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+
+        document.getElementById('text').innerText = 'Delay: ' + (clickTime - $touchEndTime) + 'ms';
       }
 
       window.addEventListener('load', function() {
