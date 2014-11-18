@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>FastClick test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  </head>
+  <body>
+    <h1>FastClick test</h1>
+
+    <div id="onclick_div"
+         onclick="invertBgColor(this);"
+         style="background: rgb(255, 0, 0);
+                margin: 8px;
+                padding: 8px;
+                text-align: center;
+                ">
+      onClick
+    </div>
+
+    <div id="ontouch_div"
+         ontouchend="invertBgColor(this);"
+         style="background: rgb(255, 0, 0);
+                margin: 8px;
+                padding: 8px;
+                text-align: center;
+                ">
+      onTouch
+    </div>
+
+    <div id="fastclick_div"
+         onclick="invertBgColor(this);"
+         style="background: rgb(255, 0, 0);
+                margin: 8px;
+                padding: 8px;
+                text-align: center;
+                ">
+      fastClick
+    </div>
+
+    <script type="application/javascript" src="fastclick.js"></script>
+    <script type="text/javascript">
+      //![CDATA[
+
+      function invertBgColor(elem) {
+        var m = elem.style.backgroundColor.match(/(\d+),\s*(\d+),\s*(\d+)/)
+        if (!m)
+          return;
+        var r = 255 - parseInt(m[1]), g = 255 - parseInt(m[2]), b = 255 - parseInt(m[3]);
+        elem.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+      }
+
+      window.addEventListener('load', function() {
+        FastClick.attach(document.getElementById('fastclick_div'));
+      });
+
+      //]]
+    </script>
+  </body>
+</html>
