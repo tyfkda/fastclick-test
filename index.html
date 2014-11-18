@@ -29,7 +29,7 @@
       onTouch
     </div>
 
-    <div id="fastclick_div_wrapper">
+    <div id="fastclick_area">
       <div id="fastclick_div"
            ontouchend="registerTouchEnd();"
            onclick="invertBgColor(this);"
@@ -69,7 +69,7 @@
       }
 
       window.addEventListener('load', function() {
-        FastClick.attach(document.getElementById('fastclick_div_wrapper'));
+        FastClick.attach(document.getElementById('fastclick_area'));
       });
 
       //]]
