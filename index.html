@@ -28,15 +28,19 @@
       onTouch
     </div>
 
-    <div id="fastclick_div"
-         onclick="invertBgColor(this);"
-         style="background: rgb(255, 0, 0);
-                margin: 8px;
-                padding: 8px;
-                text-align: center;
-                ">
-      fastClick
+    <div id="fastclick_div_wrapper">
+      <div id="fastclick_div"
+           onclick="invertBgColor(this);"
+           style="background: rgb(255, 0, 0);
+                  margin: 8px;
+                  padding: 8px;
+                  text-align: center;
+                  ">
+        fastClick
+      </div>
     </div>
+
+    <div id="text"></div>
 
     <script type="application/javascript" src="fastclick.js"></script>
     <script type="text/javascript">
@@ -51,7 +55,7 @@
       }
 
       window.addEventListener('load', function() {
-        FastClick.attach(document.getElementById('fastclick_div'));
+        FastClick.attach(document.getElementById('fastclick_div_wrapper'));
       });
 
       //]]
